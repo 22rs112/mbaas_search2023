@@ -22,10 +22,17 @@
           showResults(results);
         })
     }
-    function searchName(){
+    function searchName1(){
         let TestDataClass=ncmb.DataStore(db);
         let name=$("#name").val();
         TestDataClass.equalTo("name",name).fetchAll().then(function(results){
+            showResults(results);
+        })
+    }
+    function searchName2(){
+        let TestDataClass=ncmb.DataStore(db);
+        let name=$("#name").val();
+        TestDataClass.regularExpressionTo("name",name).fetchAll().then(function(results){
             showResults(results);
         })
     }
@@ -53,6 +60,32 @@
             showResults(results);
         })
     }
+
+    function searchAttackLT(){
+         let TestDataClass=ncmb.DataStore(db);
+        let attack=parseInt($("#attack").val());
+        TestDataClass.lessThanOrEqualTo("attack",attack).fetchAll().then(function(results){
+            showResults(results);
+        })
+    }
+
+    function searchAttack(){
+        let TestDataClass=ncmb.DataStore(db);
+        let attack=parseInt($("#attack").val());
+        TestDataClass.equalTo("attack",attack).fetchAll().then(function(results){
+            showResults(results);
+        })
+    }
+
+    function searchAttackGT(){
+         let TestDataClass=ncmb.DataStore(db);
+        let attack=parseInt($("#attack").val());
+        TestDataClass.greaterThanOrEqualTo("attack",attack).fetchAll().then(function(results){
+            showResults(results);
+        })
+    }
+
+    
 
     function showResults(results) {
       // テーブルのヘッダを生成
@@ -89,15 +122,16 @@
   </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
-    <button class="btn" onclick="searchName()">Name</button>
+    <button class="btn" onclick="searchName()">Name1</button>
+    <button class="btn" onclick="searchName2()">Name2</button>
     <br>
     <button class="btn" onclick="searchLevelLT()">Level &lt;</button>
     <button class="btn" onclick="searchLevel()">Level</button>
     <button class="btn" onclick="searchLevelGT()">Level &gt;</button>
     <br>
-    <button class="btn" onclick="searchAttackLT()">Attack &lt;</button>
+    <button class="btn" onclick="searchAttackLT()">Attack <=</button>
     <button class="btn" onclick="searchAttack()">Attack</button>
-    <button class="btn" onclick="searchAttackGT()">Attack &gt;</button>
+    <button class="btn" onclick="searchAttackGT()">Attack >=</button>
   </div>
   <div id="message">message area</div>
 </body>
